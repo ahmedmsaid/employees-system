@@ -1,0 +1,84 @@
+{
+  "departments": [
+    {
+      "id": "1",
+      "name": "Human Resources"
+    },
+    {
+      "id": "2",
+      "name": "Information Technology"
+    },
+    {
+      "id": "3",
+      "name": "Graphic Design"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "firstName": "Ahmed",
+      "lastName": "Said",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "ahmedmsaid307@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    },
+    {
+      "id": "2",
+      "firstName": "Mahmoud",
+      "lastName": "Rahim",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "mahmoudrahim@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    },
+    {
+      "id": "3",
+      "firstName": "Ahmed",
+      "lastName": "Said",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "ahmedmsaid307@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    },
+    {
+      "id": "4",
+      "firstName": "Ahmed",
+      "lastName": "Said",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "ahmedmsaid307@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    },
+    {
+      "id": "5",
+      "firstName": "Ahmed",
+      "lastName": "Said",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "ahmedmsaid307@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    },
+    {
+      "id": "6",
+      "firstName": "Ahmed",
+      "lastName": "Said",
+      "birthDate": "7/30/2001",
+      "phone": "01069267343",
+      "address": "Menoufia",
+      "email": "ahmedmsaid307@gmail.com",
+      "department": "Information Technology",
+      "salary": 12000
+    }
+  ]
+}

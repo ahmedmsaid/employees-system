@@ -1,0 +1,30 @@
+nav {
+    background-color: rgb(17, 136, 221);
+}
+
+div {
+    width: 90%;
+    border: 2px red solid;
+    margin: 0 auto;
+}
+
+nav > div > ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav > div > ul > li {
+    margin: 10px 5%;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav > div > ul > li > a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+        color:blue;
+        transition: 0.3s;
+    }
+}
