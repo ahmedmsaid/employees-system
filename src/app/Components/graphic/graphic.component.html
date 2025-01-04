@@ -1,5 +1,30 @@
 <div class="container">
   <div class="bg-img">
-    <h1>Graphic Desing Department</h1>
+    <h1>Graphic Design Department</h1>
+  </div>
+  <div class="cards-container">
+    <div *ngFor="let employee of employees;">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ employee.firstName + ' ' + employee.lastName }}</mat-card-title>
+        <mat-card-subtitle>{{ employee.email }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>Birth Date: {{ employee.birthDate | date:'mediumDate' }}</div>
+        <div>Phone: {{ employee.phone }}</div>
+        <div>Address: {{ employee.address }}</div>
+        <div>Department: {{ employee.department }}</div>
+        <div>Salary: {{ employee.salary }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="editEmployee(employee.id)">Edit</button>
+        <button mat-button style="color: red;" (click)="deleteEmployee(employee.id)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+   </div>
+  </div>
+  <div class="bottom">
+    <a routerLink="/add-employee" class="add">Add</a>
   </div>
 </div>

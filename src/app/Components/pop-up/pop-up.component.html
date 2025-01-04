@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Employee {{ emp.firstName + ' ' + emp.lastName }} has been updated Succefully!</h2>
+<mat-dialog-content>
+  Name: {{ emp.firstName + ' ' + emp.lastName }}<br>
+  Email: {{ emp.email }}<br>
+  Birth Date: {{emp.birthDate | date:'mediumDate' }}<br>
+  Address: {{ emp.address }}<br>
+  Phone: {{ emp.phone }}<br>
+  Department: {{ emp.department }}<br>
+  Salary: {{ emp.salary }}<br>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close (click)="navigate()">Go to department</button>
+</mat-dialog-actions>

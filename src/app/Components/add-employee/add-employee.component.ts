@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { IEmployee } from 'src/app/Models/employee';
 import { ApiService } from 'src/app/Services/api.service';
 
@@ -10,6 +11,7 @@ import { ApiService } from 'src/app/Services/api.service';
 })
 export class AddEmployeeComponent implements OnInit {
   employeeForm!: FormGroup;
+  snackBar = inject(MatSnackBar);
   //newEmployee!: IEmployee;
 
   constructor(private api: ApiService) { 
@@ -31,7 +33,8 @@ export class AddEmployeeComponent implements OnInit {
   addEmployee(employee: IEmployee) {
     this.api.addEmployee(employee).subscribe({
       next: () => console.log("Added Succefully!"),
-      error: (err) => console.error("Error occured" + err)
+      error: (err) => console.error("Error occured" + err),
+      complete: () => this.openSnackBar()
     })
   }
 
@@ -40,7 +43,7 @@ export class AddEmployeeComponent implements OnInit {
       id: this.generateRandomNumber(6, 100).toString(),
       firstName: this.employeeForm.get('firstName')?.value,
       lastName: this.employeeForm.get('lastName')?.value,
-      birthDate: this.employeeForm.get('birthDate')?.value.toISOString().split('T')[0],
+      birthDate: this.employeeForm.get('birthDate')?.value,
       phone: this.employeeForm.get('phone')?.value,
       address: this.employeeForm.get('address')?.value,
       email: this.employeeForm.get('email')?.value,
@@ -53,6 +56,12 @@ export class AddEmployeeComponent implements OnInit {
 
   generateRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Employee Added Succefully!', 'Close', {
+      duration: 3000,
+    });
   }
 
 }

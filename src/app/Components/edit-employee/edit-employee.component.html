@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="form">
+  <h2>Edit an existing employee</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input  matInput placeholder="Enter the First Name" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input  matInput placeholder="Enter the Last Name" formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input  matInput placeholder="Enter the Phone Number" formControlName="phone">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input  matInput placeholder="Enter the Address" formControlName="address">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input  matInput placeholder="Enter the Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select</mat-label>
+      <mat-select formControlName="department">
+        <mat-option value="Human Resources">Human Resources</mat-option>
+        <mat-option value="Information Technology">Information Technology</mat-option>
+        <mat-option value="Graphic Design">Graphic Design</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Salary</mat-label>
+      <input  matInput placeholder="Enter the salary" formControlName="salary">
+    </mat-form-field>
+    <button type="submit" [disabled]="!employeeForm.valid" mat-flat-button>Submit</button>
+  </form>
+</div>
+</div>

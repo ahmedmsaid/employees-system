@@ -12,6 +12,8 @@ import { MaterialModule } from './Modules/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditEmployeeComponent } from './Components/edit-employee/edit-employee.component';
+import { PopUpComponent } from './Components/pop-up/pop-up.component';
 
 const routes: Routes = [
   { path: '', component: NotFoundComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'it', component: ItComponent },
   { path: 'graphic', component: GraphicComponent },
   { path: 'add-employee', component: AddEmployeeComponent},
+  { path: ':department/edit-employee/:id', component: EditEmployeeComponent},
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -29,6 +32,8 @@ const routes: Routes = [
     GraphicComponent,
     ItComponent,
     AddEmployeeComponent,
+    EditEmployeeComponent,
+    PopUpComponent,
     NavComponent
   ],
   imports: [

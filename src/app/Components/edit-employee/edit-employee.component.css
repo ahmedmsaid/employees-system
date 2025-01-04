@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+}
+
+.form {
+    width: 90%;
+    margin: 30px auto;
+    border: 2px red solid;
+}
+
+form > * {
+    display: block;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+button {
+    margin-left: auto;
+}

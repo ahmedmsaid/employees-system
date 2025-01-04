@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { IEmployee } from 'src/app/Models/employee';
 import { ApiService } from 'src/app/Services/api.service';
 
@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/Services/api.service';
 })
 export class HrComponent implements OnInit {
   employees: IEmployee[];
+  snackBar = inject(MatSnackBar);
 
   constructor(private api: ApiService, private router: Router) {
     this.employees = [];
@@ -22,9 +23,13 @@ export class HrComponent implements OnInit {
 
   getEmployees(): void {
     this.api.getEmployees().subscribe({
-      next: (data) => (this.employees = data),
+      next: (data) => (this.employees = data.filter((emp) => emp.department === 'Human Resources')),
       error: (err) => console.error('Error fetching posts:', err)
     });
+  }
+
+  editEmployee(id: string) {
+    this.router.navigate(['/hr', 'edit-employee', id]);
   }
 
   deleteEmployee(id: string): void {
@@ -32,7 +37,14 @@ export class HrComponent implements OnInit {
       next: () => {
         this.employees = this.employees.filter(employee => employee.id !== id);
       },
-      error: (err) => console.error('Error deleting employee:', err)
+      error: (err) => console.error('Error deleting employee:', err),
+      complete: () => this.openSnackBar()
     })
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Employee Deleted Succefully!', 'Close', {
+      duration: 3000,
+    });
   }
 }

@@ -14,6 +14,14 @@ getEmployees(): Observable<IEmployee[]> {
   return this.http.get<IEmployee[]>('http://localhost:3000/employees');
 }
 
+getEmployee(id: string):Observable<IEmployee> {
+  return this.http.get<IEmployee>(`http://localhost:3000/employees/${id}`)
+}
+
+editEmployee(id: string, emp: IEmployee): Observable<void>{
+  return this.http.put<void>(`http://localhost:3000/employees/${id}`, emp)
+}
+
 addEmployee(employee: IEmployee) {
   return this.http.post<IEmployee>('http://localhost:3000/employees', employee, {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
