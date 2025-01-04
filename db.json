@@ -79,6 +79,17 @@
       "email": "ahmedmsaid307@gmail.com",
       "department": "Information Technology",
       "salary": 12000
+    },
+    {
+      "id": "34",
+      "firstName": "Mahmoud",
+      "lastName": "Eldeeb",
+      "birthDate": "1999-07-08",
+      "phone": "01069267343",
+      "address": "Cairo",
+      "email": "temp@gmail.com",
+      "department": "Information Technology",
+      "salary": "15000"
     }
   ]
 }

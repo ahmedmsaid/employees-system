@@ -11,6 +11,7 @@ import { GraphicComponent } from './Components/graphic/graphic.component';
 import { MaterialModule } from './Modules/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: NotFoundComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
     BrowserModule,
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
