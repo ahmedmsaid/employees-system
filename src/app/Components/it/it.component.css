@@ -17,14 +17,12 @@ h1 {
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0 auto;
-    border: 2px red solid;
     line-height: 1.1em;
 }
 
 
 .cards-container {
     width: 90%;
-    border: 2px red solid;
     margin: 10px auto;
     display: flex;
     gap: 1.5em;

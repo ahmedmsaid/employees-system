@@ -4,8 +4,8 @@ nav {
 
 div {
     width: 90%;
-    border: 2px red solid;
     margin: 0 auto;
+    border: 2px rgb(17, 136, 221) solid;
 }
 
 nav > div > ul {

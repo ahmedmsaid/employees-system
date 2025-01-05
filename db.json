@@ -34,7 +34,7 @@
       "address": "Menoufia",
       "email": "mahmoudrahim@gmail.com",
       "department": "Information Technology",
-      "salary": 12000
+      "salary": "19000"
     },
     {
       "id": "3",
@@ -145,6 +145,28 @@
       "email": "mohamed.elhenawy@gmail.com",
       "department": "Information Technology",
       "salary": "19000"
+    },
+    {
+      "id": "97",
+      "firstName": "Tarek",
+      "lastName": "Gamal",
+      "birthDate": "2000-09-18T21:00:00.000Z",
+      "phone": "01069267343",
+      "address": "Menouf",
+      "email": "tareqjamal@gmail.com",
+      "department": "Information Technology",
+      "salary": "12000"
+    },
+    {
+      "id": "50",
+      "firstName": "Karim",
+      "lastName": "Abo Agiza",
+      "birthDate": "2001-04-18T22:00:00.000Z",
+      "phone": "01069267343",
+      "address": "Shibin El-kom",
+      "email": "karim.agiza@gmail.com",
+      "department": "Information Technology",
+      "salary": 19000
     }
   ]
 }

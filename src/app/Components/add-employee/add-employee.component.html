@@ -26,7 +26,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input  matInput placeholder="Enter the Email" formControlName="email">
+      <input  matInput placeholder="Enter the Email" formControlName="email" type="email">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Select</mat-label>
@@ -38,7 +38,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Salary</mat-label>
-      <input  matInput placeholder="Enter the salary" formControlName="salary">
+      <input  matInput placeholder="Enter the salary" formControlName="salary" type="number">
     </mat-form-field>
     <button type="submit" [disabled]="!employeeForm.valid" mat-flat-button>Submit</button>
   </form>

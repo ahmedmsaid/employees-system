@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/Models/employee';
 import { ApiService } from 'src/app/Services/api.service';
 
@@ -9,9 +10,10 @@ import { ApiService } from 'src/app/Services/api.service';
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css']
 })
-export class AddEmployeeComponent implements OnInit {
+export class AddEmployeeComponent implements OnInit, OnDestroy {
   employeeForm!: FormGroup;
   snackBar = inject(MatSnackBar);
+  subscriptions!: Subscription[];
   //newEmployee!: IEmployee;
 
   constructor(private api: ApiService) { 
@@ -25,22 +27,26 @@ export class AddEmployeeComponent implements OnInit {
       department: new FormControl('', Validators.required),
       salary: new FormControl('', Validators.required)
     });
+
+    this.subscriptions = [];
   }
 
   ngOnInit() {
   }
 
   addEmployee(employee: IEmployee) {
-    this.api.addEmployee(employee).subscribe({
+    let sub = this.api.addEmployee(employee).subscribe({
       next: () => console.log("Added Succefully!"),
       error: (err) => console.error("Error occured" + err),
       complete: () => this.openSnackBar()
     })
+
+    this.subscriptions.push(sub);
   }
 
   onSubmit() {
     let newEmployee = {
-      id: this.generateRandomNumber(6, 100).toString(),
+      id: this.generateRandomNumber(100, 1000).toString(),
       firstName: this.employeeForm.get('firstName')?.value,
       lastName: this.employeeForm.get('lastName')?.value,
       birthDate: this.employeeForm.get('birthDate')?.value,
@@ -62,6 +68,12 @@ export class AddEmployeeComponent implements OnInit {
     this.snackBar.open('Employee Added Succefully!', 'Close', {
       duration: 3000,
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    })
   }
 
 }

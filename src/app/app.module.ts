@@ -14,9 +14,10 @@ import { AddEmployeeComponent } from './Components/add-employee/add-employee.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditEmployeeComponent } from './Components/edit-employee/edit-employee.component';
 import { PopUpComponent } from './Components/pop-up/pop-up.component';
+import { HomeComponent } from './Components/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: NotFoundComponent },
+  { path: '', component: HomeComponent },
   { path: 'hr', component: HrComponent },
   { path: 'it', component: ItComponent },
   { path: 'graphic', component: GraphicComponent },
@@ -34,7 +35,9 @@ const routes: Routes = [
     AddEmployeeComponent,
     EditEmployeeComponent,
     PopUpComponent,
-    NavComponent
+    HomeComponent,
+    NavComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

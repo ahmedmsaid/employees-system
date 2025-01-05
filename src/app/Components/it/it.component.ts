@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IEmployee } from 'src/app/Models/employee';
 import { ApiService } from 'src/app/Services/api.service';
 
@@ -9,12 +10,14 @@ import { ApiService } from 'src/app/Services/api.service';
   templateUrl: './it.component.html',
   styleUrls: ['./it.component.css']
 })
-export class ItComponent implements OnInit {
+export class ItComponent implements OnInit, OnDestroy {
 employees: IEmployee[];
 snackBar = inject(MatSnackBar);
+subscriptions!: Subscription[];
 
   constructor(private api: ApiService, private router: Router) {
     this.employees = [];
+    this.subscriptions = [];
    }
 
   ngOnInit() {
@@ -22,10 +25,12 @@ snackBar = inject(MatSnackBar);
   }
 
   getEmployees(): void {
-    this.api.getEmployees().subscribe({
+    let sub = this.api.getEmployees().subscribe({
       next: (data) => (this.employees = data.filter((emp) => emp.department === 'Information Technology')),
       error: (err) => console.error('Error fetching posts:', err)
     });
+
+    this.subscriptions.push(sub)
   }
 
   editEmployee(id: string) {
@@ -33,19 +38,27 @@ snackBar = inject(MatSnackBar);
   }
 
   deleteEmployee(id: string): void {
-    this.api.deleteEmployee(id).subscribe({
+    let sub = this.api.deleteEmployee(id).subscribe({
       next: () => {
         this.employees = this.employees.filter(employee => employee.id !== id);
       },
       error: (err) => console.error('Error deleting employee:', err),
       complete: () => this.openSnackBar()
     })
+
+    this.subscriptions.push(sub)
   }
 
   openSnackBar() {
     this.snackBar.open('Employee Deleted Succefully!', 'Close', {
       duration: 3000,
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    })
   }
 
 }

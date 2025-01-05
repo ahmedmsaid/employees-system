@@ -5,7 +5,6 @@
 .form {
     width: 90%;
     margin: 30px auto;
-    border: 2px red solid;
 }
 
 form > * {

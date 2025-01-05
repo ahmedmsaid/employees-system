@@ -23,7 +23,6 @@ h1 {
 
 .cards-container {
     width: 90%;
-    border: 2px red solid;
     margin: 10px auto;
     display: flex;
     gap: 1.5em;

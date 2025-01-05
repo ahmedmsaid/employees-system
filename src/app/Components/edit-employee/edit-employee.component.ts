@@ -1,21 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEmployee } from 'src/app/Models/employee';
 import { ApiService } from 'src/app/Services/api.service';
 import { PopUpComponent } from '../pop-up/pop-up.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
   styleUrls: ['./edit-employee.component.css']
 })
-export class EditEmployeeComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit, OnDestroy {
   employeeForm!: FormGroup;
   employee!: IEmployee;
   emp_id!: string;
   department!: string;
+  subscriptions!: Subscription[];
   popUp = inject(MatDialog);
 
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { 
@@ -29,6 +31,8 @@ export class EditEmployeeComponent implements OnInit {
       department: new FormControl('', Validators.required),
       salary: new FormControl('', Validators.required)
     });
+
+    this.subscriptions = [];
   }
 
   ngOnInit() {
@@ -38,17 +42,21 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   getEmployee(id: string) {
-    this.api.getEmployee(id).subscribe({
+    let sub = this.api.getEmployee(id).subscribe({
       next: (data) => this.employeeForm.patchValue(data),
       error: (err) => console.log("Error ocurred " + err)
     });
+
+    this.subscriptions.push(sub)
   }
 
   editEmployee(id: string, emp: IEmployee) {
-    this.api.editEmployee(id, emp).subscribe({
+    let sub = this.api.editEmployee(id, emp).subscribe({
       next: () => console.log("Employee Updated Successfully"),
       error: (err) => console.error("Error ocurred " + err)
     })
+
+    this.subscriptions.push(sub)
   }
 
   onSubmit() {
@@ -73,6 +81,12 @@ export class EditEmployeeComponent implements OnInit {
       data: this.employee,
       autoFocus: true,
       disableClose: false
+    })
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
     })
   }
 
